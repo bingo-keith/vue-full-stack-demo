@@ -8,12 +8,24 @@ var instance = axios.create({
 
 // 请求拦截器
 instance.interceptors.request.use(function( config ) {
+    // 每次发送请求之前，将token放到请求头中
+    if(localStorage.getItem('token')) {
+        config.headers.authorrization = localStorage.getItem('token')
+    }
     return config;
 }, function(error) {
     return Promise.reject(error);
 })
 
+// 响应拦截器
 instance.interceptors.response.use(function( res ) {
+    if(res.status == '200') {
+        if(res.data.token) {
+            localStorage.setItem('token', res.data.token)
+        } else {
+            // 错误处理 根据不同的状态码处理
+        }
+    }
     return res.data;
 }, function(error) {
     return Promise.reject(error);

@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
-    <h2>登陆</h2>
-    用户名<input type="text" v-model="user">
-    密码<input type="password" v-model="pass">
-    <input type="button" @click='reg' value="注册">
-    <input type="button" @click='login' value="登录">
+  <div id="app" v-if="isShow">
+    <Button>Default</Button>
+    <Button type="primary">Primary</Button>
+    <Button type="dashed">Dashed</Button>
+    <br>
+    <br>
+    <br>
+    <router-view/>
   </div>
 </template>
 
@@ -13,10 +15,13 @@ import { LOGIN, REG } from './apis/auth.js'
 export default {
   data() {
     return {
-      user: '',
-      pass: '',
-      err: []
+      isShow:true
     }
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.isShow=false
+    // }, 3000,this);
   },
   methods: {
     async reg() {
@@ -45,5 +50,13 @@ export default {
 }
 </script>
 
-<style>
+<style scope lang="less">
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>

@@ -4,6 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import '!style-loader!css-loader!less-loader!./assets/styles/base.less'
+import iviewComs from './components/iview-coms'
+
+
+Vue.use(iviewComs)
+
 new Vue({
   el: '#app',
   router,
