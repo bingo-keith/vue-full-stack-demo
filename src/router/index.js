@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-//@±íÊ¾ srcÄ¿Â¼ webpackµÄÅäÖÃÔÚwebpack.base.conf.jsµÚ29ÐÐ alias{'@':resolve('src')}
+import Vue from 'vue';
+import Router from 'vue-router';
+//@ï¿½ï¿½Ê¾ srcÄ¿Â¼ webpackï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½webpack.base.conf.jsï¿½ï¿½29ï¿½ï¿½ alias{'@':resolve('src')}
 // import Home from '@/views/Home/Home.vue'
 // import Login from '@/views/Login/Login.vue'
 // import Test from '@/views/Test/Test.vue'
-// ÀÁ¼ÓÔØ·½Ê½
-const Home=()=>import('@/views/Home/Home.vue')
-const Login=()=>import('@/views/Login/Login.vue')
-const Test=()=>import('@/views/Test/Test.vue')
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ø·ï¿½Ê½
+const Home=()=>import('@/views/Home/Home.vue');
+const Login=()=>import('@/views/Login/Login.vue');
+const Test=()=>import('@/views/Test/Test.vue');
 
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
@@ -31,17 +31,17 @@ const router = new Router({
       component: Test
     }
   ]
-})
+});
 
-//ÔÚÃ¿´Î½øÐÐÂ·ÓÉÌø×ªÖ®Ç°½øÐÐ
+//ï¿½ï¿½Ã¿ï¿½Î½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½×ªÖ®Ç°ï¿½ï¿½ï¿½ï¿½
 router.beforeEach((to, from, next) => {
-  console.log(localStorage.getItem('token'))
-  const isLogin = localStorage.getItem('token') ? true : false;
-  if(to.path == '/login') {
+  console.log(localStorage.getItem('token'), 'token');
+  const isLogin = !!localStorage.getItem('token');
+  if(to.path === '/login') {
     next()
   } else {
     isLogin ? next() : next('/login');
   }
-})
+});
 
-export default router
+export default router;
