@@ -27,7 +27,7 @@
         try {
           const data = await LOGIN({name: self.user, pass: self.pass});
           localStorage.setItem('token', data.token);
-          consoleo.log(localStorage.getItem(token));
+          console.log(localStorage.getItem(token));
         } catch (err) {
           console.log(err);
         }

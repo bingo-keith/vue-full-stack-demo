@@ -4,10 +4,10 @@ import Router from 'vue-router';
 // import Home from '@/views/Home/Home.vue'
 // import Login from '@/views/Login/Login.vue'
 // import Test from '@/views/Test/Test.vue'
-// �����ط�ʽ
-const Home=()=>import('@/views/Home/Home.vue');
-const Login=()=>import('@/views/Login/Login.vue');
-const Test=()=>import('@/views/Test/Test.vue');
+// �����ط�懒加载方式
+const Home = () => import('@/views/Home/Home.vue');
+const Login = () => import('@/views/Login/Login.vue');
+const Test = () => import('@/views/Test/Test.vue');
 
 
 Vue.use(Router);
@@ -37,7 +37,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   console.log(localStorage.getItem('token'), 'token');
   const isLogin = !!localStorage.getItem('token');
-  if(to.path === '/login') {
+  if (to.path === '/login') {
     next()
   } else {
     isLogin ? next() : next('/login');
